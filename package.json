@@ -2,6 +2,7 @@
   "name": "bluebird-meme",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ranolp.github.io/bluebird-meme/",
   "dependencies": {
     "clipboard": "^2.0.4",
     "polished": "^3.4.0",
