@@ -19,7 +19,7 @@ export const Ssi: Rule = {
     ],
     output: '선배님'
   }),
-  regexp: /([시씨])/g
+  regexp: /([시씨Cc])/g
 };
 
 export const Ssibal: Rule = {
@@ -40,7 +40,7 @@ export const Ssibal: Rule = {
     ],
     output: ''
   }),
-  regexp: /([시씨]발)/g
+  regexp: /([시씨Cc]발)/g
 };
 
 export const Seungri: Rule = {
