@@ -19,7 +19,29 @@ export const Ssi: Rule = {
     ],
     output: '선배님'
   }),
-  regexp: /([시씨Cc])/g
+  regexp: /([시씨])/gm
+};
+
+export const EngliSsi: Rule = {
+  description: '요즘 젊은 것들은 버르장머리 없게 선배님들을 ㅇㅇ씨라고 불러?',
+  process: (origin, offset, [front, real, back]) => ({
+    messages: [
+      {
+        origin: real,
+        text: '선배님을 버르장머리 없이 씨를 붙여 불러?',
+        where: {
+          from: offset,
+          to: offset + origin.length
+        },
+        word: {
+          into: '선배님',
+          type: 'replace'
+        }
+      }
+    ],
+    output: `${front}선배님${back}`
+  }),
+  regexp: /(^|[^a-zA-Z])([Cc])([^a-zA-Z]|$)/gm
 };
 
 export const Ssibal: Rule = {
@@ -40,7 +62,7 @@ export const Ssibal: Rule = {
     ],
     output: ''
   }),
-  regexp: /([시씨Cc]발)/g
+  regexp: /(?:^|[^a-zA-Z])([시씨Cc]발)/gm
 };
 
 export const Seungri: Rule = {
@@ -62,7 +84,7 @@ export const Seungri: Rule = {
     ],
     output: '빅토리'
   }),
-  regexp: /(승리)/g
+  regexp: /(승리)/gm
 };
 
 export const Tori: Rule = {
@@ -85,5 +107,5 @@ export const Tori: Rule = {
     ],
     output: '볶음'
   }),
-  regexp: /([도토]리)/g
+  regexp: /([도토]리)/gm
 };

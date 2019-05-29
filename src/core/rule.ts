@@ -2,7 +2,7 @@ export interface Rule {
   regexp: RegExp;
   description?: string;
   process(
-    match: string,
+    origin: string,
     offset: number,
     groups: string[],
     wholeString: string
@@ -40,11 +40,12 @@ export function processRules(input: string, rules: Rule[]): RuleProcessOutput {
   const messages: RuleProcessOutputMessage[] = [];
   for (const rule of rules) {
     output = output.replace(rule.regexp, (...args) => {
-      const match = args[0] as string;
+      const origin = args[0] as string;
       const groups = args.slice(1, args.length - 2) as string[];
       const offset = args[args.length - 2] as number;
       const wholeString = args[args.length - 1] as string;
-      const result = rule.process(match, offset, groups, wholeString);
+      const result = rule.process(origin, offset, groups, wholeString);
+      console.log(origin, offset, groups, wholeString);
       messages.push(...result.messages);
       return result.output;
     });
