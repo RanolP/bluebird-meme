@@ -1,3 +1,4 @@
+import { josa } from 'josa';
 import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
@@ -65,7 +66,7 @@ const Message: FC<{ message: RuleProcessOutputMessage }> = ({ message }) => {
     message.word.type === 'delete'
       ? `${message.origin} 제거`
       : message.word.type === 'replace'
-      ? `${message.origin}을/를 ${message.word.into}(으)로 변환`
+      ? josa(`${message.origin}#{을} ${message.word.into}#{로} 변환`)
       : '알 수 없는 작업';
   return (
     <MessageWrap>
