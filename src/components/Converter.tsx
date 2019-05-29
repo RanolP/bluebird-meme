@@ -18,6 +18,7 @@ const Wrap = styled.div`
 
 const Description = styled.span`
   font-size: 1.5rem;
+  text-align: center;
 `;
 
 const Label = styled.label`
@@ -103,7 +104,10 @@ const Converter: FC = () => {
 
   return (
     <Wrap>
-      <Description>파랑새밈!!</Description>
+      <Description>
+        파랑새밈!!
+        <br /> 심심하다면 아래에 시씨식사사를 입력해보세요.
+      </Description>
       <Label htmlFor="converter-input">입력</Label>
       <Input
         id="converter-input"
