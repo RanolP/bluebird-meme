@@ -6,7 +6,14 @@ import {
   RuleProcessOutput,
   RuleProcessOutputMessage
 } from '../core/rule';
-import { EngliSsi, Seungri, Ssi, Ssibal, Tori } from '../core/standardRules';
+import {
+  Apa,
+  EngliSsi,
+  Seungri,
+  Ssi,
+  Ssibal,
+  Tori
+} from '../core/standardRules';
 import { Black } from '../styles/colors';
 
 const Wrap = styled.div`
@@ -78,7 +85,7 @@ const Message: FC<{ message: RuleProcessOutputMessage }> = ({ message }) => {
   );
 };
 
-const rules = [Ssibal, Ssi, Seungri, Tori, EngliSsi];
+const rules = [Ssibal, Ssi, Seungri, Tori, EngliSsi, Apa];
 
 const Converter: FC = () => {
   const [input, setInput] = useState('');
