@@ -45,7 +45,6 @@ export function processRules(input: string, rules: Rule[]): RuleProcessOutput {
       const offset = args[args.length - 2] as number;
       const wholeString = args[args.length - 1] as string;
       const result = rule.process(origin, offset, groups, wholeString);
-      console.log(origin, offset, groups, wholeString);
       messages.push(...result.messages);
       return result.output;
     });
