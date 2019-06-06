@@ -18,5 +18,5 @@ export const Ssibal: Rule = {
     ],
     output: ''
   }),
-  regexp: /(?:^|[^a-zA-Z])([시씨Cc]발)/gm
+  regexp: /([시씨Cc]발|[십씹](?:[팔할])?)/gm
 };

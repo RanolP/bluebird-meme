@@ -78,7 +78,17 @@ const Message: FC<{ message: RuleProcessOutputMessage }> = ({ message }) => {
   );
 };
 
-const rules = Object.values(standardRules);
+const rules = [
+  standardRules.Ssibal,
+  standardRules.Ssi,
+  standardRules.EngliSsi,
+  standardRules.Seungri,
+  standardRules.Tori,
+  standardRules.Em,
+  standardRules.Emglish,
+  standardRules.Eb,
+  standardRules.Apa
+];
 
 const Converter: FC = () => {
   const [input, setInput] = useState('');
