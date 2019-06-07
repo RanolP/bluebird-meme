@@ -2,7 +2,7 @@ import { Rule } from '../rule';
 
 const description =
   '요즘 젊은 것들은 버르장머리 없게 선배님들을 ㅇㅇ씨라고 불러?';
-const text = '선배님을 버르장머리 없이 씨를 붙여 불러?';
+const text = '선배님께 씨를 붙여 불러, 버르장머리 없이?';
 
 export const Ssi: Rule = {
   description,

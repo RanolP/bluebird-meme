@@ -6,7 +6,7 @@ export const Seungri: Rule = {
     messages: [
       {
         origin,
-        text: '승리쓰지마세요.',
+        text: '승리쓰지마세요',
         where: {
           from: offset,
           to: offset + origin.length

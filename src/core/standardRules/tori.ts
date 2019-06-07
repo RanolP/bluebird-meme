@@ -1,3 +1,4 @@
+import { josa } from 'josa';
 import { Rule } from '../rule';
 
 export const Tori: Rule = {
@@ -7,7 +8,7 @@ export const Tori: Rule = {
     messages: [
       {
         origin,
-        text: '도리는 일본어니 볶음 쓰세요.',
+        text: josa(`${origin}는 일본어니 볶음 쓰세요`),
         where: {
           from: offset,
           to: offset + origin.length

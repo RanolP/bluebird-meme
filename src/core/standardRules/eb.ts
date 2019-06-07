@@ -6,7 +6,7 @@ export const Eb: Rule = {
     messages: [
       {
         origin,
-        text: '존경을 담아 부릅니다. 아버지.',
+        text: '아버지, 존경을 담아 부릅니다',
         where: {
           from: offset,
           to: offset + origin.length

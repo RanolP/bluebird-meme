@@ -6,7 +6,7 @@ export const Apa: Rule = {
     messages: [
       {
         origin,
-        text: '아파는 버릇이 없으니 편찮다를 씁시다.',
+        text: '아파가 뭐니 편찮다고 해야지',
         where: {
           from: offset,
           to: offset + origin.length

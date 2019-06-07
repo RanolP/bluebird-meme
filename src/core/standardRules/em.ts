@@ -1,7 +1,7 @@
 import { Rule } from '../rule';
 
 const description = '엠/앰은 비속어입니다.';
-const text = '존경을 담아 부릅니다. 어머니.';
+const text = '어머니, 존경을 담아 부릅니다.';
 
 export const Em: Rule = {
   description,

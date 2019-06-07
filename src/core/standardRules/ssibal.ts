@@ -6,7 +6,7 @@ export const Ssibal: Rule = {
     messages: [
       {
         origin,
-        text: `${origin}쓰지마세요.`,
+        text: `${origin}쓰지마세요`,
         where: {
           from: offset,
           to: offset + origin.length

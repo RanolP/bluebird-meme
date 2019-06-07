@@ -9,6 +9,7 @@ import {
 } from '../core/rule';
 import * as standardRules from '../core/standardRules';
 import { Black } from '../styles/colors';
+import { escapeRegExp } from '../util/regexp';
 
 const Wrap = styled.div`
   display: flex;
@@ -135,6 +136,30 @@ const rules = [
   standardRules.Apa
 ];
 
+function toString(messages: RuleProcessOutputMessage[]): string {
+  let result = '';
+  let last = '';
+  let count = 0;
+
+  function appendLast() {
+    result += `\n${last.length < 10 ? last : `${last.substring(0, 10)}…`}${
+      count > 1 ? ` × ${count}` : ''
+    }`;
+  }
+
+  for (const { text } of messages) {
+    if (last === text) {
+      count++;
+    } else {
+      appendLast();
+      last = text;
+      count = 1;
+    }
+  }
+  appendLast();
+  return result.trim();
+}
+
 const Converter: FC = () => {
   const [input, setInput] = useState('');
   const [rows, setRows] = useState(1);
@@ -186,9 +211,9 @@ const Converter: FC = () => {
         <Output id="converter-output" value={result.output} rows={rows} />
         <CopyButton
           ref={button}
-          data-clipboard-text={`${input} → ${
-            result.output
-          }\n${result.messages.map(message => message.text).join('\n')}`}
+          data-clipboard-text={`${input} → ${result.output}\n${toString(
+            result.messages
+          )}`}
         >
           Copy
         </CopyButton>
