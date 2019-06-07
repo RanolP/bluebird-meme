@@ -91,6 +91,9 @@ const MessageWrap = styled.div`
   background-color: hsl(230, 35%, 90%);
   border-radius: 0.2rem;
 
+  width: fit-content;
+  height: fit-content;
+
   margin-top: 1.2rem;
   margin-right: 1.2rem;
   padding: 0.2rem 0.4rem;
