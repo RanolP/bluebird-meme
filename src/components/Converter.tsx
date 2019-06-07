@@ -1,5 +1,6 @@
+import ClipboardJS from 'clipboard';
 import { josa } from 'josa';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import {
   processRules,
@@ -26,14 +27,18 @@ const Label = styled.label`
   margin-top: 2rem;
 `;
 
+const TextAreaWrap = styled.div`
+  position: relative;
+  width: calc(100% - 2rem);
+  max-width: 768px;
+`;
+
 const TextAreaBase = styled.textarea.attrs({
   wrap: 'off'
 })`
   font-size: 1.5rem;
 
-  width: calc(100% - 2rem);
-  max-width: 768px;
-
+  width: calc(100% - 1.2rem);
   min-height: 2ch;
 
   border: 1px solid ${Black};
@@ -48,17 +53,54 @@ const Output = styled(TextAreaBase).attrs({
   readOnly: true
 })``;
 
-const MessageWrap = styled.div`
-  border: 1px solid ${Black};
-  border-radius: 0.1rem;
+const CopyButton = styled.button`
+  position: absolute;
+  right: 0.4rem;
+  top: 0.6rem;
 
-  margin-top: 0.6rem;
+  border: 1px solid black;
+  background-color: hsl(0, 0%, 95%);
+  padding: 0.2rem;
+
+  transition: opacity ease 0.2s, background-color ease 0.2s;
+
+  opacity: 0;
+
+  &:hover {
+    background-color: hsl(0, 0%, 75%);
+  }
+
+  &:active {
+    background-color: hsl(0, 0%, 85%);
+  }
+
+  ${TextAreaWrap}:hover > & {
+    opacity: 1;
+  }
+`;
+
+const Results = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: calc(100% - 2rem);
+  max-width: 768px;
+`;
+
+const MessageWrap = styled.div`
+  background-color: hsl(230, 35%, 90%);
+  border-radius: 0.2rem;
+
+  margin-top: 1.2rem;
+  margin-right: 1.2rem;
   padding: 0.2rem 0.4rem;
 
   text-align: center;
 
+  display: inline-block;
+
   &:last-child {
-    margin-bottom: 0.6rem;
+    margin-bottom: 1.2rem;
   }
 `;
 
@@ -97,12 +139,20 @@ const Converter: FC = () => {
     messages: [],
     output: ''
   });
+  const button = useRef<HTMLButtonElement>(null);
 
   const onInputChange: React.ChangeEventHandler<HTMLTextAreaElement> = ({
     target: { value }
   }) => {
     setInput(value);
   };
+
+  useEffect(() => {
+    if (button.current) {
+      const clipboard = new ClipboardJS(button.current);
+      return clipboard.destroy;
+    }
+  }, [button]);
 
   useEffect(() => {
     setRows([...input].filter(it => it === '\n').length + 1);
@@ -116,20 +166,35 @@ const Converter: FC = () => {
     <Wrap>
       <Description>
         파랑새밈!!
-        <br /> 심심하다면 아래에 시씨식사사를 입력해보세요.
+        <br /> 심심하다면 아래에 <ins>다시 십오 년</ins>을 입력해보세요.
       </Description>
       <Label htmlFor="converter-input">입력</Label>
-      <Input
-        id="converter-input"
-        placeholder="무슨 일이 일어나고 있나요?"
-        onChange={onInputChange}
-        rows={rows + 1}
-      />
+      <TextAreaWrap>
+        <Input
+          id="converter-input"
+          placeholder="무슨 일이 일어나고 있나요?"
+          onChange={onInputChange}
+          value={input}
+          rows={rows + 1}
+        />
+      </TextAreaWrap>
       <Label htmlFor="converter-output">결과</Label>
-      <Output id="converter-output" value={result.output} rows={rows} />
-      {result.messages.map((message, index) => (
-        <Message key={index} message={message} />
-      ))}
+      <TextAreaWrap>
+        <Output id="converter-output" value={result.output} rows={rows} />
+        <CopyButton
+          ref={button}
+          data-clipboard-text={`${input} → ${
+            result.output
+          }\n${result.messages.map(message => message.text).join('\n')}`}
+        >
+          Copy
+        </CopyButton>
+      </TextAreaWrap>
+      <Results>
+        {result.messages.map((message, index) => (
+          <Message key={index} message={message} />
+        ))}
+      </Results>
     </Wrap>
   );
 };
