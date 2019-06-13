@@ -1,4 +1,5 @@
 export * from './apa';
+export * from './beer';
 export * from './em';
 export * from './eb';
 export * from './seungri';
