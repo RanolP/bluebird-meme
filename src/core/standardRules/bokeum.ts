@@ -1,4 +1,3 @@
-import { josa } from 'josa';
 import { Rule } from '../rule';
 
 export const Bokeum: Rule = {

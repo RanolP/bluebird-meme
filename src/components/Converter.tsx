@@ -9,7 +9,6 @@ import {
 } from '../core/rule';
 import * as standardRules from '../core/standardRules';
 import { Black } from '../styles/colors';
-import { escapeRegExp } from '../util/regexp';
 
 const Wrap = styled.div`
   display: flex;
