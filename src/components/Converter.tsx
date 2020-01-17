@@ -20,6 +20,10 @@ const Wrap = styled.div`
 const Description = styled.span`
   font-size: 1.5rem;
   text-align: center;
+
+  ins {
+    cursor: pointer;
+  }
 `;
 
 const Label = styled.label`
@@ -138,6 +142,8 @@ const rules = [
   standardRules.Evian
 ];
 
+const sentences = ['다시 십오 년', '비어있는 에비앙 생수', '엠블럼이 멋진 앱'];
+
 function toString(messages: RuleProcessOutputMessage[]): string {
   let result = '';
   let last = '';
@@ -169,6 +175,7 @@ const Converter: FC = () => {
     messages: [],
     output: ''
   });
+  const textareaInput = useRef<HTMLTextAreaElement>(null);
   const button = useRef<HTMLButtonElement>(null);
 
   const onInputChange: React.ChangeEventHandler<HTMLTextAreaElement> = ({
@@ -192,11 +199,26 @@ const Converter: FC = () => {
     setResult(processRules(input, rules));
   }, [input]);
 
+  const modifyInput = (newInput: string) => {
+    if (textareaInput.current) {
+      textareaInput.current.value = newInput;
+    }
+    setInput(newInput);
+  };
+
+  const [randomRecommendation] = useState(
+    sentences[Math.round(Math.random() * 100) % sentences.length]
+  );
+
   return (
     <Wrap>
       <Description>
         파랑새밈!!
-        <br /> 심심하다면 아래에 <ins>다시 십오 년</ins>을 입력해보세요.
+        <br /> 심심하다면 아래에{' '}
+        <ins onClick={modifyInput.bind(null, randomRecommendation)}>
+          {randomRecommendation}
+        </ins>
+        을 입력하거나 저 문장을 눌러보세요.
       </Description>
       <Label htmlFor="converter-input">입력</Label>
       <TextAreaWrap>
