@@ -134,7 +134,8 @@ const rules = [
   standardRules.Eb,
   standardRules.Apa,
   standardRules.Beer,
-  standardRules.Bokeum
+  standardRules.Bokeum,
+  standardRules.Evian
 ];
 
 function toString(messages: RuleProcessOutputMessage[]): string {

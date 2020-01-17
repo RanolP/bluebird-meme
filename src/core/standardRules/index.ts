@@ -7,3 +7,4 @@ export * from './seungri';
 export * from './ssi';
 export * from './ssibal';
 export * from './tori';
+export * from './evian';
