@@ -27,7 +27,7 @@ const Link = styled.a`
 const Header: FC = () => {
   return (
     <Wrap>
-      <span>파랑새밈 v1.5.1</span>
+      <span>파랑새밈 v1.6.0</span>
       <span>
         <Link href="https://twitter.com/Ranol__">Ranol☆P</Link>가 만들었어요!
       </span>
