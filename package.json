@@ -6,10 +6,10 @@
   "dependencies": {
     "clipboard": "^2.0.4",
     "josa": "^3.0.1",
-    "polished": "^3.4.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "styled-components": "^4.2.0"
+    "polished": "^3.4.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,13 +34,13 @@
   },
   "devDependencies": {
     "@types/clipboard": "^2.0.1",
-    "@types/react": "^16.8.18",
-    "@types/react-dom": "^16.8.4",
-    "@types/styled-components": "^4.1.15",
-    "prettier": "^1.17.1",
-    "react-scripts": "^3.0.1",
-    "tslint": "^5.16.0",
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
+    "@types/styled-components": "^4.4.2",
+    "prettier": "^1.19.1",
+    "react-scripts": "^3.3.0",
+    "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.7.5"
   }
 }
