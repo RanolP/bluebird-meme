@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/bluebird-meme/static/js/main.0d8a3cae.chunk.js",
+    "main.js.map": "/bluebird-meme/static/js/main.0d8a3cae.chunk.js.map",
+    "runtime-main.js": "/bluebird-meme/static/js/runtime-main.f531119d.js",
+    "runtime-main.js.map": "/bluebird-meme/static/js/runtime-main.f531119d.js.map",
+    "static/js/2.b6b160b2.chunk.js": "/bluebird-meme/static/js/2.b6b160b2.chunk.js",
+    "static/js/2.b6b160b2.chunk.js.map": "/bluebird-meme/static/js/2.b6b160b2.chunk.js.map",
+    "index.html": "/bluebird-meme/index.html",
+    "precache-manifest.71d7fce2c3779659c17d59070acafe61.js": "/bluebird-meme/precache-manifest.71d7fce2c3779659c17d59070acafe61.js",
+    "service-worker.js": "/bluebird-meme/service-worker.js",
+    "static/js/2.b6b160b2.chunk.js.LICENSE": "/bluebird-meme/static/js/2.b6b160b2.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f531119d.js",
+    "static/js/2.b6b160b2.chunk.js",
+    "static/js/main.0d8a3cae.chunk.js"
+  ]
+}
