@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { Black, White } from '../styles/colors';
 
 const Wrap = styled.div`

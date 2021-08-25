@@ -1,16 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'preact';
 import App from './components/App';
 import { Reset } from './styles/reset';
+import { Global } from '@emotion/react';
 
-import * as serviceWorker from './serviceWorker';
-
-ReactDOM.render(
+render(
   <>
-    <Reset />
+    <Global styles={[Reset]} />
     <App />
   </>,
-  document.getElementById('root')
+  document.getElementById('root')!
 );
-
-serviceWorker.unregister();

@@ -1,11 +1,11 @@
 import ClipboardJS from 'clipboard';
 import { josa } from 'josa';
 import React, { FC, useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import {
   processRules,
   RuleProcessOutput,
-  RuleProcessOutputMessage
+  RuleProcessOutputMessage,
 } from '../core/rule';
 import * as standardRules from '../core/standardRules';
 import { Black } from '../styles/colors';
@@ -37,9 +37,7 @@ const TextAreaWrap = styled.div`
   max-width: 768px;
 `;
 
-const TextAreaBase = styled.textarea.attrs({
-  wrap: 'off'
-})`
+const TextAreaBase = styled.textarea`
   font-size: 1.5rem;
 
   width: calc(100% - 1.2rem);
@@ -53,9 +51,7 @@ const TextAreaBase = styled.textarea.attrs({
 
 const Input = styled(TextAreaBase)``;
 
-const Output = styled(TextAreaBase).attrs({
-  readOnly: true
-})``;
+const Output = styled(TextAreaBase)``;
 
 const CopyButton = styled.button`
   position: absolute;
@@ -78,7 +74,7 @@ const CopyButton = styled.button`
     background-color: hsl(0, 0%, 85%);
   }
 
-  ${TextAreaWrap}:hover > & {
+  #output:hover > & {
     opacity: 1;
   }
 `;
@@ -127,59 +123,22 @@ const Message: FC<{ message: RuleProcessOutputMessage }> = ({ message }) => {
   );
 };
 
-const rules = [
-  standardRules.Ssibal,
-  standardRules.Ssi,
-  standardRules.EngliSsi,
-  standardRules.Seungri,
-  standardRules.Tori,
-  standardRules.Em,
-  standardRules.Emglish,
-  standardRules.Eb,
-  standardRules.Apa,
-  standardRules.Beer,
-  standardRules.Bokeum,
-  standardRules.Evian
-];
+const rules = Object.values(standardRules);
 
 const sentences = ['다시 십오 년', '비어있는 에비앙 생수', '엠블럼이 멋진 앱'];
 
-function toString(messages: RuleProcessOutputMessage[]): string {
-  let result = '';
-  let last = '';
-  let count = 0;
-
-  function appendLast() {
-    result += `\n${last.length < 10 ? last : `${last.substring(0, 10)}…`}${
-      count > 1 ? ` × ${count}` : ''
-    }`;
-  }
-
-  for (const { text } of messages) {
-    if (last === text) {
-      count++;
-    } else {
-      appendLast();
-      last = text;
-      count = 1;
-    }
-  }
-  appendLast();
-  return result.trim();
-}
-
-const Converter: FC = () => {
+export default function Converter(): JSX.Element {
   const [input, setInput] = useState('');
   const [rows, setRows] = useState(1);
   const [result, setResult] = useState<RuleProcessOutput>({
     messages: [],
-    output: ''
+    output: '',
   });
   const textareaInput = useRef<HTMLTextAreaElement>(null);
   const button = useRef<HTMLButtonElement>(null);
 
   const onInputChange: React.ChangeEventHandler<HTMLTextAreaElement> = ({
-    target: { value }
+    target: { value },
   }) => {
     setInput(value);
   };
@@ -192,7 +151,7 @@ const Converter: FC = () => {
   }, [button]);
 
   useEffect(() => {
-    setRows([...input].filter(it => it === '\n').length + 1);
+    setRows([...input].filter((it) => it === '\n').length + 1);
   }, [input]);
 
   useEffect(() => {
@@ -228,16 +187,21 @@ const Converter: FC = () => {
           onChange={onInputChange}
           value={input}
           rows={rows + 1}
+          wrap="off"
         />
       </TextAreaWrap>
       <Label htmlFor="converter-output">결과</Label>
-      <TextAreaWrap>
-        <Output id="converter-output" value={result.output} rows={rows} />
+      <TextAreaWrap id="output">
+        <Output
+          id="converter-output"
+          value={result.output}
+          rows={rows}
+          wrap="off"
+          readOnly={true}
+        />
         <CopyButton
           ref={button}
-          data-clipboard-text={`${input} → ${result.output}\n${toString(
-            result.messages
-          )}`}
+          data-clipboard-text={`${input} → ${result.output}\n#파랑새밈`}
         >
           Copy
         </CopyButton>
@@ -249,6 +213,4 @@ const Converter: FC = () => {
       </Results>
     </Wrap>
   );
-};
-
-export default Converter;
+}

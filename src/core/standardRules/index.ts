@@ -8,3 +8,4 @@ export * from './ssi';
 export * from './ssibal';
 export * from './tori';
 export * from './evian';
+export * from './hanguk-namja';
