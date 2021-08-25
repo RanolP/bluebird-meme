@@ -12,13 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
 
-      - name: Use Berry
-        run: yarn set version berry
-
-      - name: Install
-        run: yarn
-
-      - name: Build Page
+      - name: Build
         run: yarn build
 
       - name: Deploy
